@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Line</name>
+    <Style id="line-000000-1200-nodesc-normal">
+      <LineStyle>
+        <color>ff000000</color>
+        <width>1.2</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="line-000000-1200-nodesc-highlight">
+      <LineStyle>
+        <color>ff000000</color>
+        <width>1.8</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="line-000000-1200-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-000000-1200-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-000000-1200-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Placemark>
+      <name>Line 1</name>
+      <styleUrl>#line-000000-1200-nodesc</styleUrl>
+      <LineString>
+        <tessellate>1</tessellate>
+        <coordinates>
+          9.4269075,45.874398,0
+          9.4268833,45.8743359,0
+          9.426861,45.874289,0
+          9.426814,45.8742501,0
+          9.426735,45.874199,0
+          9.4266969,45.8741706,0
+          9.4266178,45.8741132,0
+          9.426577,45.874067,0
+          9.426526,45.874042,0
+          9.4264863,45.8740091,0
+          9.426434,45.87395,0
+          9.426404,45.873914,0
+          9.4263509,45.8738588,0
+          9.4263167,45.8738163,0
+          9.4262939,45.8737845,0
+          9.4262698,45.8737416,0
+          9.426269,45.873698,0
+          9.4262791,45.8736627,0
+          9.4262932,45.8736253,0
+          9.4263073,45.8735969,0
+        </coordinates>
+      </LineString>
+    </Placemark>
+  </Document>
+</kml>

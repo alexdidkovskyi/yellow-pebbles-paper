@@ -1,0 +1,13 @@
+"Model","Observations","RMSE","MAE","Wasserstein"
+"Typical Displacement",1194,3.8609,2.6145,2.3797
+"Extreme Displacement",130,17.6153,12.164,8.5202
+"Typical Velocity",1256,0.1931,0.1232,0.1011
+"Extreme Velocity",68,1.3803,0.8171,0.6017
+"Typical Displacement with Tracer Dimensions",1194,3.8928,2.6909,2.3395
+"Extreme Displacement with Tracer Dimensions",130,18.0163,11.9981,6.5524
+"Typical Velocity with Tracer Dimensions",1256,0.1943,0.1263,0.1047
+"Extreme Velocity with Tracer Dimensions",68,1.295,0.7631,0.454
+"Baseline: Typical Displacement",1194,4.322,3.2929,NA
+"Baseline: Extreme Displacement",130,15.785,11.6012,NA
+"Baseline: Typical Velocity",1256,0.2224,0.161,NA
+"Baseline: Extreme Velocity",68,1.2622,0.8159,NA
