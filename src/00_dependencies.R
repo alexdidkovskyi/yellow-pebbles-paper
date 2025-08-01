@@ -47,10 +47,11 @@ packages <- c(
   
   # Visualization and output
   "ggplot2",      # For plotting
+  "ggrepel",      # For annotation on plots
   "plotly",       # For interactive visualizations
   "scales",       # For scaling data
   "BAMMtools",    # For Jenks Natural Breaks
-  "viridis"      # For color scales
+  "viridis"       # For color scales
   
 )
 

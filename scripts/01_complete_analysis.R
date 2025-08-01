@@ -58,6 +58,7 @@ print(outlier_counts)
 
 displacement_density_plot <- ggplot(df_models_ %>% filter(graph_dist > 0), aes(x = graph_dist)) +
   geom_density() +
+  geom_rug(sides = "b", alpha = 0.3, length = unit(0.025, "npc")) +
   scale_x_log10(
     breaks = scales::trans_breaks("log10", function(x) 10^x),
     labels = scales::trans_format("log10", scales::math_format(10^.x))
@@ -72,6 +73,7 @@ ggsave("data/results/figures/displacement_density_plot.png", displacement_densit
 
 velocity_density_plot <- ggplot(df_models_ %>% filter(graph_vel > 0), aes(x = graph_vel)) +
   geom_density() +
+  geom_rug(sides = "b", alpha = 0.3, length = unit(0.025, "npc")) +
   scale_x_log10(
     breaks = scales::trans_breaks("log10", function(x) 10^x),
     labels = scales::trans_format("log10", scales::math_format(10^.x))

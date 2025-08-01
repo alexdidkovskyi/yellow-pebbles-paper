@@ -251,6 +251,89 @@ baseline_weather %<>%
   mutate(cl_ = clusters) %>%
   select(-id) # Remove temporary ID column
 
+# Change sign of weather PC1 to make it more intuitive
+baseline_weather$weather_PC1 <- -baseline_weather$weather_PC1
+
+baseline_weather_plot <- baseline_weather %>%
+  mutate(
+    event_number = row_number(),
+    year = case_when(
+      EventoStart >= 1 & EventoStart <= 9 ~ 2016,
+      EventoStart >= 10 & EventoStart <= 18 ~ 2017,
+      EventoStart >= 19 & EventoStart <= 28 ~ 2018,
+      TRUE ~ NA_real_
+    )
+  )
+
+
+
+pca_plot <- ggplot(baseline_weather_plot, aes(x = weather_PC1, y = weather_PC2)) +
+  # Add points colored by year
+  geom_point(aes(color = factor(year)), size = 5, alpha = 0.8) +
+  
+  # Add event number labels (black text)
+  geom_text_repel(aes(label = event_number), 
+                  size = 5, fontface = "bold", color = "black",
+                  box.padding = 0.3, point.padding = 0.3, max.overlaps = 50) +
+  
+  # Add interpretive arrows
+  # Event intensity arrow (horizontal, top left)
+  annotate("segment", x = 0.5, y = 0.8, xend = -0.0, yend = 0.8,
+           color = "steelblue", size = 2.4) +
+  annotate("text", x = -0.05, y = 0.8, label = "-", 
+           color = "steelblue", size = 8, hjust = 0.5) +
+  annotate("text", x = 0.55, y = 0.8, label = "+", 
+           color = "steelblue", size = 8, hjust = 0.5) +
+  annotate("text", x = 0.3, y = 0.88, label = "Event intensity", 
+           color = "steelblue", size = 5, hjust = 0.5) +
+  
+  # Duration arrow (vertical, right side)  
+  annotate("segment", x = 1.15, y = -0.15, xend = 1.15, yend = 0.55,
+           color = "steelblue", size = 2.4) +
+  annotate("text", x = 1.15, y = -0.2, label = "-", 
+           color = "steelblue", size = 8, hjust = 0.5) +
+  annotate("text", x = 1.15, y = 0.6, label = "+", 
+           color = "steelblue", size = 8, hjust = 0.5) +
+  annotate("text", x = 1.23, y = 0.2, label = "Duration", 
+           color = "steelblue", size = 5, angle = 90, hjust = 0.5) +
+  
+  # Customize the plot
+  labs(
+    x = expression(PC1[flow]),
+    y = expression(PC2[flow]),
+    color = "Year"
+  ) +
+  
+  # Set axis limits 
+  xlim(-0.6, 1.3) +
+  ylim(-0.3, 1) +
+  
+  # Color palette similar to reference
+  scale_color_manual(values = c("2016" = "#440154", "2017" = "#21908C", "2018" = "#FDE725")) +
+  
+  # Theme to match reference
+  theme_bw() +
+  theme(
+    panel.background = element_rect(fill = "white", color = "black", size = 0.5),
+    panel.grid.major = element_line(color = "grey90", size = 0.3),
+    panel.grid.minor = element_blank(),
+    axis.text = element_text(size = 16),
+    axis.title = element_text(size = 18, face = "italic"),
+    legend.position = "right",
+    legend.title = element_text(size = 16),
+    legend.text = element_text(size = 15),
+    legend.background = element_rect(fill = "white", color = "black", size = 0.3),
+    legend.key = element_blank(),
+    plot.background = element_rect(fill = "white", color = NA)
+  ) +
+  
+  # Ensure equal scaling
+  coord_fixed(ratio = 1)
+
+# Display the plot
+print(pca_plot)
+
+ggsave("data/results/figures/Weather_PCs.png", pca_plot, width = 8, height = 6)
 
 #--------------------------------------------------------
 # STEP 5: GENERATE POOL GRID AND TEST DATA
@@ -290,8 +373,6 @@ df_models_ <- df_models_ %>%
     id_o = 1:nrow(.)
   )
 
-1 +
-  1
 # Create features dataset
 df_ <- df_models_ %>%
   dplyr::select(
