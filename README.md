@@ -5,7 +5,7 @@ output: html_document
 
 # Yellow Pebbles: River Bed Load Transport Analysis
 
-This repository contains the R code used in the analysis for the paper "Data-Driven Bed Load Inference from RFID Pebble Tracing in a Pre-Alpine Stream" published in the Journal of Geophysical Research: Earth Surface.
+This repository contains the R code used in the analysis for the paper "Data-Driven Bed Load Inference from RFID Pebble Tracing in a Pre-Alpine Stream" published in Water (MDPI).
 
 ## Overview
 
